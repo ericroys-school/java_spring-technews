@@ -17,14 +17,14 @@
   <section>
     <h2>Create New Post</h2>
 
-    <form action="#" th:action="@{/posts}" th:object="${post}" method="post" class="new-post-form">
+    <form action="#" th:action="@{/post}" th:object="${post}" method="post" class="new-post-form">
       <div>
         <label for="post-title">Title</label>
         <input type="text" th:field="*{title}" id="post-title" name="post-title"/>
       </div>
       <div>
         <label for="post-url">Link</label>
-        <input type="text" th:field="*{postUrl}" id="post-url" name="post-url"/>
+        <input type="text" th:field="*{uri}" id="post-url" name="post-url"/>
       </div>
       <button type="submit" class="btn">Create</button>
     </form>
@@ -36,6 +36,7 @@
       <li th:each="post : ${postList}">
         <div th:insert="fragments/post-fragment :: post-fragment"></div>
         <a th:href="@{/dashboard/edit/{id}(id=${post.id})}" class="edit-link">Edit post</a>
+        <span th:text="${post.id}"></span>
       </li>
     </ol>
   </section>
