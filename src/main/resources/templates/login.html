@@ -14,7 +14,7 @@
     <h3>[[${notice}]]</h3>
   </div>
 
-  <form action="#" th:action="@{/users/login}" th:object="${user}" method="post" class="login-form">
+  <form action="#" th:action="@{/user/login}" th:object="${user}" method="post" class="login-form">
     <div>
       <label>email:</label>
       <input type="text" th:field="*{email}"/>
@@ -30,7 +30,7 @@
 
 
 
-  <form action="#" th:action="@{/users}" th:object="${user}" method="post" class="signup-form">
+  <form action="#" th:action="@{/user}" th:object="${user}" method="post" class="signup-form">
     <div>
       <label>username:</label>
       <input type="text" th:field="*{username}"/>
