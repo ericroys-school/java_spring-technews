@@ -15,8 +15,8 @@ spring:
       enabled: true
   datasource: 
     url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/tech_news?useSSL=false&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true
-    username: postgres #${DB_USER}
-    password: ***REMOVED*** #${DB_PASS}
+    username: ${DB_USER}
+    password: ${DB_PASS}
     driverClassName: org.postgresql.Driver
   application: 
     name: technews_api
