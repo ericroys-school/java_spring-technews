@@ -10,10 +10,10 @@
 
 <article class="post" th:fragment="post-fragment">
   <div class="title">
-    <a th:href="@{ ${post.postUrl} }" target="_blank">[[${post.title}]]</a>
+    <a th:href="@{ ${post.uri} }" target="_blank">[[${post.title}]]</a>
 
-    <div th:if="${#strings.contains(post.postUrl, 'http://')}">
-      <div th:with="arg=${#strings.replace(post.postUrl,'http://','')}">
+    <div th:if="${#strings.contains(post.uri, 'http://')}">
+      <div th:with="arg=${#strings.replace(post.uri,'http://','')}">
         <div th:if="${#strings.contains(arg, '/')}">
           <div th:with="arg2=${#strings.arraySplit(arg, '/')}">
             <span th:text="${#strings.toString(arg2[0])}"></span>
@@ -32,8 +32,8 @@
       </div>
     </div>
 
-    <div th:if="${#strings.contains(post.postUrl, 'https://')}">
-      <div th:with="arg=${#strings.replace(post.postUrl,'https://','')}">
+    <div th:if="${#strings.contains(post.uri, 'https://')}">
+      <div th:with="arg=${#strings.replace(post.uri,'https://','')}">
         <div th:if="${#strings.contains(arg, '/')}">
           <div th:with="arg2=${#strings.arraySplit(arg, '/')}">
             <span th:text="${#strings.toString(arg2[0])}"></span>
@@ -52,8 +52,8 @@
       </div>
     </div>
 
-    <div th:if="${#strings.contains(post.postUrl, 'www.')}">
-      <div th:with="arg=${#strings.replace(post.postUrl,'www.','')}">
+    <div th:if="${#strings.contains(post.uri, 'www.')}">
+      <div th:with="arg=${#strings.replace(post.uri,'www.','')}">
         <div th:if="${#strings.contains(arg, '/')}">
           <div th:with="arg2=${#strings.arraySplit(arg, '/')}">
             <span th:text="${#strings.toString(arg2[0])}"></span>
@@ -83,7 +83,7 @@
     </div>
     <div th:unless="${post.voteCount == 1}" class="meta">
       [[${post.voteCount}]] points by [[${post.userName}]] on
-      <span th:text="${#dates.format(post.postedAt, 'MM-dd-YY')}"></span>
+      <!-- <span th:text="${#dates.format(new Date(post.created), 'MM-dd-YY')}"></span> -->
       |
       <a th:href="@{/post/{id}(id=${post.id})}" th:if="${post.comments.size() == 1}">[[${post.comments.size()}]]
           comment</a>
