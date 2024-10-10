@@ -19,21 +19,21 @@
     Edit Post
   </h2>
 
-  <form action="#" th:action="@{/posts/{id}(id=${post.id})}" th:object="${post}" method="post" class="edit-post-form">
-    <div>
+  <form action="#" th:action="@{/post/{id}(id=${post.id})}" th:object="${post}" method="post" class="edit-post-form">
+      <div>
       <input type="text" th:field="*{title}"/>
-      <span th:text="${#strings.replace(post.postUrl,'http://','')}"></span>
+      <span th:text="${#strings.replace(post.uri,'http://','')}"></span>
     </div>
     <div th:if="${post.voteCount == 1}" class="meta">
       [[${post.voteCount}]] point by [[${post.userName}]] on
-      <span th:text="${#dates.format(post.postedAt, 'MM-dd-YY')}"></span>
+      <!-- <span th:text="${#dates.format(post.postedAt, 'MM-dd-YY')}"></span> -->
       |
       <a th:href="@{/post/{id}(id=${post.id})}" th:if="${post.comments.size() == 1}">[[${post.comments.size()}]] comment</a>
       <a th:href="@{/post/{id}(id=${post.id})}" th:unless="${post.comments.size() == 1}">[[${post.comments.size()}]] comments</a>
     </div>
     <div th:unless="${post.voteCount == 1}" class="meta">
       [[${post.voteCount}]] points by [[${post.userName}]] on
-      <span th:text="${#dates.format(post.postedAt, 'MM-dd-YY')}"></span>
+      <!-- <span th:text="${#dates.format(post.postedAt, 'MM-dd-YY')}"></span> -->
       |
       <a th:href="@{/post/{id}(id=${post.id})}" th:if="${post.comments.size() == 1}">[[${post.comments.size()}]] comment</a>
       <a th:href="@{/post/{id}(id=${post.id})}" th:unless="${post.comments.size() == 1}">[[${post.comments.size()}]] comments</a>
@@ -43,10 +43,10 @@
   </form>
 
 
-  <form action="#" th:action="@{/comments/edit}" th:object="${comment}" method="post" class="comment-form">
+  <form action="#" th:action="@{/comment/edit}" th:object="${comment}" method="post" class="comment-form">
     <div>
       <input type="hidden" th:value="${post.id}" name="postId"/>
-      <textarea name="comment-body" th:field="*{commentText}"></textarea>
+      <textarea name="comment-body" th:field="*{commentTxt}"></textarea>
     </div>
 
     <div>
